@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HotelM8 - Reports</title>
+        <!--di ko na matanggal need online yung mga svg hahahaha-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <div class="app-header">
+            <div class="header-left">
+                <h1>HotelM8 Manager</h1>
+                <p>Reports & Analytics</p>
+            </div>
+            <div class="header-right">
+                <div class="user-info">
+                    <span id="currentUser">Admin</span>
+                    <span id="userRole">Administrator</span>
+                    <button id="logoutBtn" class="btn btn-danger btn-sm">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Alert Messages -->
+        <div id="alertMessage" class="alert"></div>
+        
+        <!-- Navigation Menu -->
+        <div class="navigation-menu">
+            <a href="dashboard.html" class="nav-item">
+                <i class="fas fa-tachometer-alt"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="checkin.html" class="nav-item">
+                <i class="fas fa-user-plus"></i>
+                <span>Check-In</span>
+            </a>
+            <a href="checkout.html" class="nav-item">
+                <i class="fas fa-user-minus"></i>
+                <span>Check-Out</span>
+            </a>
+            <a href="guests.html" class="nav-item">
+                <i class="fas fa-users"></i>
+                <span>Guest Management</span>
+            </a>
+            <a href="rooms.html" class="nav-item">
+                <i class="fas fa-door-open"></i>
+                <span>Room Management</span>
+            </a>
+            <a href="reports.html" class="nav-item active">
+                <i class="fas fa-chart-bar"></i>
+                <span>Reports</span>
+            </a>
+            <a href="admin.html" class="nav-item admin-only" style="display: none;">
+                <i class="fas fa-cog"></i>
+                <span>Admin Panel</span>
+            </a>
+        </div>
+        
+        <!-- Reports Content -->
+        <div class="content-section">
+            <div class="section-header">
+                <h2 class="section-title">Reports & Analytics</h2>
+                <div class="report-actions">
+                    <button id="generateDailyReport" class="btn btn-primary">
+                        <i class="fas fa-file-alt"></i> Daily Report
+                    </button>
+                    <button id="printReport" class="btn btn-secondary">
+                        <i class="fas fa-print"></i> Print Report
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Report Period Selection -->
+            <div class="report-period">
+                <h3>Custom Report Period</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="reportStartDate">Start Date</label>
+                        <input type="date" id="reportStartDate" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="reportEndDate">End Date</label>
+                        <input type="date" id="reportEndDate" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>&nbsp;</label>
+                        <button id="generateCustomReport" class="btn btn-primary">
+                            <i class="fas fa-chart-bar"></i> Generate Report
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Report Summary -->
+            <div class="report-summary">
+                <h3>Report Summary</h3>
+                <div class="dashboard">
+                    <div class="stat-card">
+                        <div class="number" id="reportTotalGuests">0</div>
+                        <div class="label">Total Guests</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number" id="reportCheckins">0</div>
+                        <div class="label">Check-Ins</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number" id="reportCheckouts">0</div>
+                        <div class="label">Check-Outs</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number" id="reportTotalRevenue">₱0</div>
+                        <div class="label">Total Revenue</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number" id="reportOccupancyRate">0%</div>
+                        <div class="label">Occupancy Rate</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Report Details -->
+            <div class="report-details" id="reportDetails">
+                <!-- Report details will be generated here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="reports.js"></script>
+</body>
+</html>

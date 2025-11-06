@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HotelM8 - Admin Panel</title>
+    <!--di ko na matanggal need online yung mga svg hahahaha-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <div class="app-header">
+            <div class="header-left">
+                <h1>HotelM8 Manager</h1>
+                <p>Administrator Panel</p>
+            </div>
+            <div class="header-right">
+                <div class="user-info">
+                    <span id="currentUser">Admin</span>
+                    <span id="userRole">Administrator</span>
+                    <button id="logoutBtn" class="btn btn-danger btn-sm">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Alert Messages -->
+        <div id="alertMessage" class="alert"></div>
+        
+        <!-- Navigation Menu -->
+        <div class="navigation-menu">
+            <a href="dashboard.html" class="nav-item">
+                <i class="fas fa-tachometer-alt"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="checkin.html" class="nav-item">
+                <i class="fas fa-user-plus"></i>
+                <span>Check-In</span>
+            </a>
+            <a href="checkout.html" class="nav-item">
+                <i class="fas fa-user-minus"></i>
+                <span>Check-Out</span>
+            </a>
+            <a href="guests.html" class="nav-item">
+                <i class="fas fa-users"></i>
+                <span>Guest Management</span>
+            </a>
+            <a href="rooms.html" class="nav-item">
+                <i class="fas fa-door-open"></i>
+                <span>Room Management</span>
+            </a>
+            <a href="reports.html" class="nav-item">
+                <i class="fas fa-chart-bar"></i>
+                <span>Reports</span>
+            </a>
+            <a href="admin.html" class="nav-item active">
+                <i class="fas fa-cog"></i>
+                <span>Admin Panel</span>
+            </a>
+        </div>
+        
+        <!-- Admin Panel Content -->
+        <div class="content-section">
+            <div class="section-header">
+                <h2 class="section-title">Administrator Panel</h2>
+                <div class="admin-actions">
+                    <button id="addUserBtn" class="btn btn-success">
+                        <i class="fas fa-user-plus"></i> Add User
+                    </button>
+                </div>
+            </div>
+            
+            <!-- User Management -->
+            <div class="admin-section">
+                <h3>User Management</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Full Name</th>
+                            <th>Role</th>
+                            <th>Last Login</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersTableBody">
+                        <!-- Users will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- System Settings -->
+            <div class="admin-section">
+                <h3>System Settings</h3>
+                <div class="settings-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="hotelName">Hotel Name</label>
+                            <input type="text" id="hotelName" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="hotelContact">Contact Number</label>
+                            <input type="text" id="hotelContact" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="hotelAddress">Hotel Other Info</label>
+                        <textarea id="hotelAddress" class="form-control" rows="3"></textarea>
+                    </div>
+                    <button id="saveSettings" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Save Settings
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add User Modal -->
+    <div id="addUserModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New User</h3>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="addUserForm">
+                    <div class="form-group">
+                        <label for="newUsername">Username *</label>
+                        <input type="text" id="newUsername" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newFullName">Full Name *</label>
+                        <input type="text" id="newFullName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newUserRole">Role *</label>
+                        <select id="newUserRole" class="form-control" required>
+                            <option value="admin">Administrator</option>
+                            <option value="manager">Manager</option>
+                            <option value="receptionist">Receptionist</option>
+                            <option value="housekeeping">Housekeeping</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="newPassword">Password *</label>
+                        <input type="password" id="newPassword" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password *</label>
+                        <input type="password" id="confirmPassword" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-success">Create User</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit User Modal -->
+    <div id="editUserModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Edit User</h3>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="editUserForm">
+                    <input type="hidden" id="editUserId">
+                    <div class="form-group">
+                        <label for="editUsername">Username</label>
+                        <input type="text" id="editUsername" class="form-control" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="editFullName">Full Name *</label>
+                        <input type="text" id="editFullName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editUserRole">Role *</label>
+                        <select id="editUserRole" class="form-control" required>
+                            <option value="admin">Administrator</option>
+                            <option value="manager">Manager</option>
+                            <option value="receptionist">Receptionist</option>
+                            <option value="housekeeping">Housekeeping</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="editPassword">New Password (leave blank to keep current)</label>
+                        <input type="password" id="editPassword" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="editConfirmPassword">Confirm New Password</label>
+                        <input type="password" id="editConfirmPassword" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="editUserActive"> Active User
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Update User</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>

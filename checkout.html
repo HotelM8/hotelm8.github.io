@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HotelM8 - Check-Out</title>
+        <!--di ko na matanggal need online yung mga svg hahahaha-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <div class="app-header">
+            <div class="header-left">
+                <h1>HotelM8 Manager</h1>
+                <p>Guest Check-Out</p>
+            </div>
+            <div class="header-right">
+                <div class="user-info">
+                    <span id="currentUser">Admin</span>
+                    <span id="userRole">Administrator</span>
+                    <button id="logoutBtn" class="btn btn-danger btn-sm">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Alert Messages -->
+        <div id="alertMessage" class="alert"></div>
+        
+        <!-- Navigation Menu -->
+        <div class="navigation-menu">
+            <a href="dashboard.html" class="nav-item">
+                <i class="fas fa-tachometer-alt"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="checkin.html" class="nav-item">
+                <i class="fas fa-user-plus"></i>
+                <span>Check-In</span>
+            </a>
+            <a href="checkout.html" class="nav-item active">
+                <i class="fas fa-user-minus"></i>
+                <span>Check-Out</span>
+            </a>
+            <a href="guests.html" class="nav-item">
+                <i class="fas fa-users"></i>
+                <span>Guest Management</span>
+            </a>
+            <a href="rooms.html" class="nav-item">
+                <i class="fas fa-door-open"></i>
+                <span>Room Management</span>
+            </a>
+            <a href="reports.html" class="nav-item">
+                <i class="fas fa-chart-bar"></i>
+                <span>Reports</span>
+            </a>
+            <a href="admin.html" class="nav-item admin-only" style="display: none;">
+                <i class="fas fa-cog"></i>
+                <span>Admin Panel</span>
+            </a>
+        </div>
+        
+        <!-- Check-Out Content -->
+        <div class="content-section">
+            <h2 class="section-title">Guest Check-Out</h2>
+            
+            <div class="form-section">
+                <div class="form-group">
+                    <label for="checkoutRoomSelect">Select Occupied Room</label>
+                    <select id="checkoutRoomSelect" class="form-control">
+                        <option value="">-- Choose Occupied Room --</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div id="checkoutDetails" style="display: none;">
+                <div class="form-section">
+                    <h3>Guest & Billing Information</h3>
+                    
+                    <div class="guest-info-card">
+                        <div class="info-row">
+                            <div class="info-item">
+                                <label>Guest Name:</label>
+                                <span id="checkoutGuestName">-</span>
+                            </div>
+                            <div class="info-item">
+                                <label>Room Number:</label>
+                                <span id="checkoutRoomNumber">-</span>
+                            </div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-item">
+                                <label>Check-In Date:</label>
+                                <span id="checkoutCheckInDate">-</span>
+                            </div>
+                            <div class="info-item">
+                                <label>Nights Stayed:</label>
+                                <span id="checkoutNights">-</span>
+                            </div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-item">
+                                <label>Contact Number:</label>
+                                <span id="checkoutGuestPhone">-</span>
+                            </div>
+                            <div class="info-item">
+                                <label>Total Guests:</label>
+                                <span id="checkoutTotalGuests">-</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="billing-section">
+                        <h4>Billing Details</h4>
+                        <div class="billing-item">
+                            <label>Room Charges:</label>
+                            <span id="checkoutRoomCharges">₱0.00</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="extraCharges">Additional Charges (₱)</label>
+                            <input type="number" id="extraCharges" class="form-control" min="0" value="0" placeholder="Minibar, damages, etc.">
+                        </div>
+                        <div class="billing-item">
+                            <label>VAT (12%):</label>
+                            <span id="checkoutTax">₱0.00</span>
+                        </div>
+                        <div class="billing-total">
+                            <label>Total Amount Due:</label>
+                            <span id="checkoutTotal">₱0.00</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button id="processCheckout" class="btn btn-primary btn-lg">
+                            <i class="fas fa-receipt"></i> Process Check-Out & Generate Receipt
+                        </button>
+                        <button id="printReceipt" class="btn btn-secondary" style="display: none;">
+                            <i class="fas fa-print"></i> Print Receipt
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="checkout.js"></script>
+</body>
+</html>

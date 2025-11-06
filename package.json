@@ -1,0 +1,16 @@
+{
+  "name": "hotelm8promax",
+  "productName": "hotelm8promax",
+  "description": "My Electron application description",
+  "keywords": [],
+  "main": "./main.js",
+  "version": "1.0.0",
+  "author": "Convalescence",
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "electron": "37.2.5"
+  }
+}
