@@ -1,6 +1,6 @@
 {
-  "name": "hotelm8promax",
-  "productName": "hotelm8promax",
+  "name": "hotelm8",
+  "productName": "hotelm8",
   "description": "My Electron application description",
   "keywords": [],
   "main": "./main.js",
