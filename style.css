@@ -957,3 +957,11 @@ body {
     padding: 15px 30px;
     font-size: 1.1rem;
 }
+
+.login-note {
+    margin-top: 20px;
+    font-size: 0.85rem;
+    color: #555;
+    text-align: center;
+    opacity: 0.8;
+}
