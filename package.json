@@ -1,6 +1,6 @@
 {
-  "name": "hotelm8",
-  "productName": "hotelm8",
+  "name": "hotelm8.github.io",
+  "productName": "hotelm8.github.io",
   "description": "My Electron application description",
   "keywords": [],
   "main": "./main.js",
